@@ -1,3 +1,3 @@
 export const StartScreen = (props) => {
-  return <button onClick={props.onStartGame}>Start Game</button>;
+  return <button onClick={() => props.onClick("startGame")}>Start Game</button>;
 };

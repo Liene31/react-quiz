@@ -4,40 +4,19 @@ import { GamePlay } from "./components/GamePlay.jsx";
 import { ScoreScreen } from "./components/ScoreScreen.jsx";
 
 function App() {
-  const [switchScreens, setSwitchScreens] = useState({
-    startGame: true,
-    gamePlay: false,
-    scoreScreen: false,
-  });
+  const [switchScreens, setSwitchScreens] = useState("startPage");
 
-  function handleGameStart() {
-    console.log("start game");
-    setSwitchScreens((prev) => {
-      return { ...prev, startGame: false, gamePlay: true };
-    });
+  function handleScreens(navigate) {
+    setSwitchScreens(navigate);
   }
 
-  function handleScore() {
-    console.log("show score");
-    setSwitchScreens((prev) => {
-      return { ...prev, scoreScreen: true, gamePlay: false };
-    });
-  }
-
-  function handleStartScreen() {
-    console.log("start screen");
-  }
   return (
     <>
-      {switchScreens.startGame && <StartScreen onStartGame={handleGameStart} />}
-      {switchScreens.gamePlay && <GamePlay onShowScore={handleScore} />}
-      {switchScreens.scoreScreen && (
-        <ScoreScreen onStartScreen={handleStartScreen} />
-      )}
+      {switchScreens === "startPage" && <StartScreen onClick={handleScreens} />}
+      {switchScreens === "startGame" && <GamePlay onClick={handleScreens} />}
+      {switchScreens === "showScore" && <ScoreScreen onClick={handleScreens} />}
     </>
   );
 }
 
 export default App;
-
-// isActive

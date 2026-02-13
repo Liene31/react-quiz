@@ -1,4 +1,6 @@
 export const ScoreScreen = (props) => {
   console.log(props);
-  return <button onClick={props.onStartScreen}>Back to start</button>;
+  return (
+    <button onClick={() => props.onClick("startPage")}>Back to start</button>
+  );
 };
