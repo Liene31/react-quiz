@@ -46,6 +46,8 @@ export const StartScreen = (props) => {
             onClick={() => props.onClick("startGame")}
             type="button"
             className="btn"
+            //if category not chosen, returns true
+            disabled={!chooseCategory}
           >
             Start Game
           </button>
