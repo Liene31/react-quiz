@@ -10,6 +10,10 @@ function App() {
     setSwitchScreens(navigate);
   }
 
+  function getChosenCategory(categoryFromChild) {
+    //here I can get chosen category from Child
+  }
+
   return (
     <>
       {switchScreens === "startPage" && <StartScreen onClick={handleScreens} />}

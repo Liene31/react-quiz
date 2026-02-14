@@ -22,6 +22,8 @@ export const StartScreen = (props) => {
     setChooseCategory(e.target.value);
   }
 
+  console.log(chooseCategory);
+
   // RETURN
   return (
     <div className={style.startScreen}>
