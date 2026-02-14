@@ -1,13 +1,14 @@
 import { useState } from "react";
-import "../startScreen.css";
+import style from "../startScreen.module.css";
 
 export const StartScreen = (props) => {
-  const [categories, setCategories] = useState("");
+  const [chooseCategory, setChooseCategory] = useState("");
 
   //Replace by API data
   const categoryList = ["sport", "animals", "food", "geography"];
 
-  const chooseCategory = categoryList.map((category) => {
+  //Loops through the list and fills the option with all the categories
+  const categories = categoryList.map((category) => {
     return (
       <option key={category} value={category}>
         {category}
@@ -16,31 +17,38 @@ export const StartScreen = (props) => {
   });
 
   //Update the state variable on any change
-  //
+  //allows to select category from the list
   function handleCategories(e) {
-    setCategories(e.target.value);
+    setChooseCategory(e.target.value);
   }
 
   // RETURN
   return (
-    <div className="start-screen">
+    <div className={style.startScreen}>
       <header>
-        <h1>Quiz Game</h1>
-        <p>Description of the game</p>
+        <h1 className={style.title}>Quiz Game</h1>
+        <p className={style.subtitle}>Description of the game</p>
       </header>
       <main>
         <form>
           <label htmlFor="category-select">Choose a category:</label>
           <select
+            className={style.selectCategory}
             name="category"
             id="category-select"
-            value={categories}
+            value={chooseCategory}
             onChange={handleCategories}
           >
             <option value="">--Choose a category--</option>
-            {chooseCategory}
+            {categories}
           </select>
-          <button onClick={() => props.onClick("startGame")}>Start Game</button>
+          <button
+            onClick={() => props.onClick("startGame")}
+            type="button"
+            className="btn"
+          >
+            Start Game
+          </button>
         </form>
       </main>
     </div>

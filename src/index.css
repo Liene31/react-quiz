@@ -13,6 +13,23 @@ body {
   height: 100vh;
 }
 
+.btn {
+  font-family: inherit;
+  font-weight: 500;
+  width: 100%;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #6366f1;
+  color: #f4f6fb;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &&:hover {
+    background-color: #4f46e5;
+  }
+}
+
 /* <weight>: Use a value from 400 to 900 */
 /* <uniquifier>: Use a unique and descriptive class name */
 

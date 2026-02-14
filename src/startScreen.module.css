@@ -1,0 +1,30 @@
+.startScreen {
+  width: 320px;
+  text-align: center;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.selectCategory {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.75rem;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #f9fafb;
+}
