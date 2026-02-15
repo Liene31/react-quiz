@@ -18,11 +18,14 @@ export const StartScreen = (props) => {
 
   //Update the state variable on any change
   //allows to select category from the list
+  //and then path via props category back to the parent
   function handleCategories(e) {
     setChooseCategory(e.target.value);
+    props.category(e.target.value);
   }
 
-  console.log(chooseCategory);
+  // console.log(chooseCategory);
+  // console.log(props.category(chooseCategory));
 
   // RETURN
   return (

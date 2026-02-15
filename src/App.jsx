@@ -10,13 +10,16 @@ function App() {
     setSwitchScreens(navigate);
   }
 
-  function getChosenCategory(categoryFromChild) {
-    //here I can get chosen category from Child
+  //Gets category from StartScreen
+  function getChosenCategory(category) {
+    console.log(category);
   }
 
   return (
     <>
-      {switchScreens === "startPage" && <StartScreen onClick={handleScreens} />}
+      {switchScreens === "startPage" && (
+        <StartScreen onClick={handleScreens} category={getChosenCategory} />
+      )}
       {switchScreens === "startGame" && <GamePlay onClick={handleScreens} />}
       {switchScreens === "showScore" && <ScoreScreen onClick={handleScreens} />}
     </>
