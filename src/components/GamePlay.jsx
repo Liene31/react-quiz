@@ -1,3 +1,4 @@
+import { it } from "@faker-js/faker";
 import style from "../gamePlay.module.css";
 
 export const GamePlay = (props) => {
@@ -25,7 +26,20 @@ export const GamePlay = (props) => {
     },
   ];
 
-  console.log(results);
+  //Function to shuffle Array
+  const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  const wrongAnswers = results[0].incorrect_answers;
+  const answerOptionsShuffled = shuffle([
+    ...wrongAnswers,
+    results[0].correct_answer,
+  ]);
 
   return (
     <div className={style.gamePlay}>
@@ -34,11 +48,12 @@ export const GamePlay = (props) => {
         <span className="score">Score: 0</span>
       </header>
       <main>
-        <h2 className={style.question}>{results[1].question}</h2>
-        <button className={style.answer}>Answer 1</button>
-        <button className={style.answer}>Answer 2</button>
-        <button className={style.answer}>Answer 3</button>
-        <button className={style.answer}>Answer 4</button>
+        <h2 className={style.question}>{results[0].question}</h2>
+        {answerOptionsShuffled.map((answers, index) => (
+          <button key={index} className={style.answer}>
+            {answers}
+          </button>
+        ))}
       </main>
 
       {/* If one of the answers is clicked, button is enabled to go to the next question*/}
