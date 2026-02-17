@@ -2,7 +2,9 @@ import { useState } from "react";
 import style from "../gamePlay.module.css";
 
 export const GamePlay = (props) => {
+  //State variable
   const [index, setIndex] = useState(0);
+  // check if this is needed and.or needs to be changed
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const results = [
     {
@@ -44,7 +46,7 @@ export const GamePlay = (props) => {
 
   //Button - detects, which of the answers are clicked
   function handleAnswer(chosenAnswerIndex) {
-    console.log(Boolean(selectedAnswer));
+    setSelectedAnswer(chosenAnswerIndex);
   }
 
   const wrongAnswers = results[index].incorrect_answers;
@@ -61,20 +63,28 @@ export const GamePlay = (props) => {
       </header>
       <main>
         <h2 className={style.question}>{results[index].question}</h2>
-        {answerOptionsShuffled.map((answers, index) => (
-          <button
-            key={index}
-            className={style.answer}
-            onClick={() => handleAnswer(index)}
-          >
-            {answers}
-          </button>
-        ))}
+        {answerOptionsShuffled.map((answers, index) => {
+          const isSelected = selectedAnswer === index;
+          console.log(answers);
+          return (
+            <button
+              key={index}
+              className={`${style.answer}  ${isSelected && style.selected}`}
+              onClick={() => handleAnswer(index)}
+            >
+              {answers}
+            </button>
+          );
+        })}
       </main>
 
       {/* If one of the answers is clicked, button is enabled to go to the next question*/}
       {index < 1 && (
-        <button className="btn" onClick={handleNextQuestion}>
+        <button
+          className="btn"
+          onClick={handleNextQuestion}
+          disabled={!selectedAnswer}
+        >
           Next
         </button>
       )}
