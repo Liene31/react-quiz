@@ -1,7 +1,8 @@
-import { it } from "@faker-js/faker";
+import { useState } from "react";
 import style from "../gamePlay.module.css";
 
 export const GamePlay = (props) => {
+  const [index, setIndex] = useState(0);
   const results = [
     {
       type: "multiple",
@@ -35,10 +36,14 @@ export const GamePlay = (props) => {
     return array;
   };
 
-  const wrongAnswers = results[0].incorrect_answers;
+  function handleNextQuestion() {
+    setIndex((prev) => prev + 1);
+  }
+
+  const wrongAnswers = results[index].incorrect_answers;
   const answerOptionsShuffled = shuffle([
     ...wrongAnswers,
-    results[0].correct_answer,
+    results[index].correct_answer,
   ]);
 
   return (
@@ -48,7 +53,7 @@ export const GamePlay = (props) => {
         <span className="score">Score: 0</span>
       </header>
       <main>
-        <h2 className={style.question}>{results[0].question}</h2>
+        <h2 className={style.question}>{results[index].question}</h2>
         {answerOptionsShuffled.map((answers, index) => (
           <button key={index} className={style.answer}>
             {answers}
@@ -57,14 +62,21 @@ export const GamePlay = (props) => {
       </main>
 
       {/* If one of the answers is clicked, button is enabled to go to the next question*/}
-      <button className="btn">Next</button>
+      {index < 1 && (
+        <button className="btn" onClick={handleNextQuestion}>
+          Next
+        </button>
+      )}
 
       {/* update logic
 hide the button and show it only when question.length === 5 && answer selected  */}
+      {/* Put two conditions, also if the answer is chosen */}
       {/* Navigates to the Score Page */}
-      <button onClick={() => props.onClick("showScore")} className="btn">
-        Show Score
-      </button>
+      {index >= 1 && (
+        <button onClick={() => props.onClick("showScore")} className="btn">
+          Show Score
+        </button>
+      )}
     </div>
   );
 };
