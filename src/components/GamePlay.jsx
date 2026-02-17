@@ -3,6 +3,7 @@ import style from "../gamePlay.module.css";
 
 export const GamePlay = (props) => {
   const [index, setIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const results = [
     {
       type: "multiple",
@@ -36,8 +37,14 @@ export const GamePlay = (props) => {
     return array;
   };
 
+  //Button - increase the index and moves to next question
   function handleNextQuestion() {
     setIndex((prev) => prev + 1);
+  }
+
+  //Button - detects, which of the answers are clicked
+  function handleAnswer(chosenAnswerIndex) {
+    console.log(Boolean(selectedAnswer));
   }
 
   const wrongAnswers = results[index].incorrect_answers;
@@ -55,7 +62,11 @@ export const GamePlay = (props) => {
       <main>
         <h2 className={style.question}>{results[index].question}</h2>
         {answerOptionsShuffled.map((answers, index) => (
-          <button key={index} className={style.answer}>
+          <button
+            key={index}
+            className={style.answer}
+            onClick={() => handleAnswer(index)}
+          >
             {answers}
           </button>
         ))}
