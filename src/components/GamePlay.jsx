@@ -6,7 +6,7 @@ export const GamePlay = (props) => {
   const [index, setIndex] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   // check if this is needed and/or needs to be changed
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
   const results = [
     {
       type: "multiple",
@@ -54,9 +54,9 @@ export const GamePlay = (props) => {
   }
 
   //Button - detects, which of the answers are clicked
-  function handleAnswer(chosenAnswerIndex) {
-    console.log(selectedAnswer);
-    setSelectedAnswer(chosenAnswerIndex);
+  function handleAnswer(chosenAnswer) {
+    console.log(chosenAnswer);
+    setSelectedAnswer(chosenAnswer);
   }
 
   return (
@@ -67,14 +67,17 @@ export const GamePlay = (props) => {
       </header>
       <main>
         <h2 className={style.question}>{results[index].question}</h2>
-        {shuffledAnswers.map((answers, index) => {
-          const isSelected = selectedAnswer === index;
-          console.log(answers);
+        {shuffledAnswers.map((answers, i) => {
+          const isSelected = answers === selectedAnswer;
+          const isCorrect = results[index].correct_answer === selectedAnswer;
+
+          console.log(isCorrect);
+
           return (
             <button
-              key={index}
-              className={`${style.answer}  ${isSelected && style.selected}`}
-              onClick={() => handleAnswer(index)}
+              key={i}
+              className={`${style.answer}  ${isSelected && isCorrect ? style.correct : style.wrong}`}
+              onClick={() => handleAnswer(answers)}
             >
               {answers}
             </button>

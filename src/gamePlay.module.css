@@ -38,7 +38,12 @@
   }
 }
 
-.selected {
-  background-color: #eef2ff;
-  border-color: #6366f1;
+.correct {
+  background-color: #ecfdf5;
+  border-color: #34d399;
+}
+
+.wrong {
+  background-color: #fef2f2;
+  border-color: #f87171;
 }
