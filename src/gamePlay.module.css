@@ -36,9 +36,9 @@
     background-color: #eef2ff;
     border-color: #6366f1;
   }
+}
 
-  .selected {
-    background-color: red;
-    border-color: #6366f1;
-  }
+.selected {
+  background-color: #eef2ff;
+  border-color: #6366f1;
 }

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "../gamePlay.module.css";
 
 export const GamePlay = (props) => {
   //State variable
   const [index, setIndex] = useState(0);
-  // check if this is needed and.or needs to be changed
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
+  // check if this is needed and/or needs to be changed
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const results = [
     {
@@ -39,6 +40,14 @@ export const GamePlay = (props) => {
     return array;
   };
 
+  useEffect(() => {
+    const wrongAnswers = results[index].incorrect_answers;
+    const correctAnswer = results[index].correct_answer;
+    const shuffled = shuffle([...wrongAnswers, correctAnswer]);
+
+    setShuffledAnswers(shuffled);
+  }, [index]);
+
   //Button - increase the index and moves to next question
   function handleNextQuestion() {
     setIndex((prev) => prev + 1);
@@ -46,14 +55,9 @@ export const GamePlay = (props) => {
 
   //Button - detects, which of the answers are clicked
   function handleAnswer(chosenAnswerIndex) {
+    console.log(selectedAnswer);
     setSelectedAnswer(chosenAnswerIndex);
   }
-
-  const wrongAnswers = results[index].incorrect_answers;
-  const answerOptionsShuffled = shuffle([
-    ...wrongAnswers,
-    results[index].correct_answer,
-  ]);
 
   return (
     <div className={style.gamePlay}>
@@ -63,7 +67,7 @@ export const GamePlay = (props) => {
       </header>
       <main>
         <h2 className={style.question}>{results[index].question}</h2>
-        {answerOptionsShuffled.map((answers, index) => {
+        {shuffledAnswers.map((answers, index) => {
           const isSelected = selectedAnswer === index;
           console.log(answers);
           return (
