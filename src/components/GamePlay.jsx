@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { clsx } from "clsx";
 import style from "../gamePlay.module.css";
 
 export const GamePlay = (props) => {
@@ -59,6 +60,8 @@ export const GamePlay = (props) => {
     setSelectedAnswer(chosenAnswer);
   }
 
+  // if selected answer is not correct - mark with green correct one
+
   return (
     <div className={style.gamePlay}>
       <header className={style.header}>
@@ -68,15 +71,21 @@ export const GamePlay = (props) => {
       <main>
         <h2 className={style.question}>{results[index].question}</h2>
         {shuffledAnswers.map((answers, i) => {
+          //User has selected a specific answer but it doesn't evaluate it's correctness
           const isSelected = answers === selectedAnswer;
-          const isCorrect = results[index].correct_answer === selectedAnswer;
-
-          console.log(isCorrect);
+          const isCorrect = answers === results[index].correct_answer;
+          //User has selected something, doesn't matter what
+          const hasAnswered = Boolean(selectedAnswer);
+          //Based on the conditions, applies correct styling
+          const className = clsx(style.answer, {
+            [style.correct]: hasAnswered && isCorrect,
+            [style.wrong]: isSelected && !isCorrect,
+          });
 
           return (
             <button
               key={i}
-              className={`${style.answer}  ${isSelected && isCorrect ? style.correct : style.wrong}`}
+              className={className}
               onClick={() => handleAnswer(answers)}
             >
               {answers}
