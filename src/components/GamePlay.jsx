@@ -7,6 +7,7 @@ export const GamePlay = (props) => {
   const [index, setIndex] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState("");
+
   const results = [
     {
       type: "multiple",
@@ -103,12 +104,13 @@ export const GamePlay = (props) => {
         </button>
       )}
 
-      {/* update logic
-hide the button and show it only when question.length === 5 && answer selected  */}
-      {/* Put two conditions, also if the answer is chosen */}
       {/* Navigates to the Score Page */}
-      {index >= 1 && (
-        <button onClick={() => props.onClick("showScore")} className="btn">
+      {index >= results.length - 1 && (
+        <button
+          onClick={() => props.onClick("showScore")}
+          className="btn"
+          disabled={!selectedAnswer}
+        >
           Show Score
         </button>
       )}
