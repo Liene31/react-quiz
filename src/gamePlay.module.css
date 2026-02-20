@@ -31,16 +31,20 @@
   background-color: #f9fafb;
   cursor: pointer;
   transition: 0.2s;
+}
 
-  &&:hover {
-    background-color: #eef2ff;
-    border-color: #6366f1;
-  }
+.answer:not(:disabled):hover {
+  background-color: #eef2ff;
+  border: 1px solid #6366f1;
+}
+
+.answer:disabled {
+  pointer-events: none;
 }
 
 .correct {
   background-color: #ecfdf5;
-  border-color: #34d399;
+  border: 1px solid #34d399;
 }
 
 .wrong {

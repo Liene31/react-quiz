@@ -6,7 +6,6 @@ export const GamePlay = (props) => {
   //State variable
   const [index, setIndex] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
-  // check if this is needed and/or needs to be changed
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const results = [
     {
@@ -52,15 +51,13 @@ export const GamePlay = (props) => {
   //Button - increase the index and moves to next question
   function handleNextQuestion() {
     setIndex((prev) => prev + 1);
+    setSelectedAnswer("");
   }
 
   //Button - detects, which of the answers are clicked
   function handleAnswer(chosenAnswer) {
-    console.log(chosenAnswer);
     setSelectedAnswer(chosenAnswer);
   }
-
-  // if selected answer is not correct - mark with green correct one
 
   return (
     <div className={style.gamePlay}>
@@ -86,6 +83,7 @@ export const GamePlay = (props) => {
             <button
               key={i}
               className={className}
+              disabled={hasAnswered}
               onClick={() => handleAnswer(answers)}
             >
               {answers}
