@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { clsx } from "clsx";
 import style from "../gamePlay.module.css";
 
 export const GamePlay = (props) => {
   //State variable
+  // const [results, setResults] = useState([]);
   const [index, setIndex] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [score, setScore] = useState(0);
 
-  console.log(props);
+  console.log(props.category);
 
   const results = [
     {
@@ -34,6 +36,17 @@ export const GamePlay = (props) => {
       incorrect_answers: ["Tate", "British Museum", "Science Museum"],
     },
   ];
+
+  useEffect(() => {
+    axios
+      .get(`https://opentdb.com/api.php?amount=5&category=19&type=multiple`)
+      .then((res) => {
+        console.log(res.data.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   //Function to shuffle Array
   const shuffle = (array) => {
