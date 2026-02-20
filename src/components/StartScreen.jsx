@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import style from "../startScreen.module.css";
 
 export const StartScreen = (props) => {
   const [chooseCategory, setChooseCategory] = useState("");
+  const [categoryList, setCategoryList] = useState([]);
 
   //Replace by API data
-  const categoryList = ["sport", "animals", "food", "geography"];
+  // const categoryList = ["sport", "animals", "food", "geography"];
+
+  //Fetch all categories from Trivia API
+  useEffect(() => {
+    axios
+      .get(`https://opentdb.com/api_category.php`)
+      .then((res) => {
+        const categories = res.data.trivia_categories;
+        setCategoryList(categories);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   //Loops through the list and fills the option with all the categories
   const categories = categoryList.map((category) => {
     return (
-      <option key={category} value={category}>
-        {category}
+      <option key={category.name} value={category.name}>
+        {category.name}
       </option>
     );
   });

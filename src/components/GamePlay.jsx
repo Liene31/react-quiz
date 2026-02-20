@@ -9,6 +9,8 @@ export const GamePlay = (props) => {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [score, setScore] = useState(0);
 
+  console.log(props);
+
   const results = [
     {
       type: "multiple",

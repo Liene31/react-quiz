@@ -7,6 +7,7 @@ function App() {
   const [switchScreens, setSwitchScreens] = useState("startPage");
   const [score, setScore] = useState(null);
   const [questionLength, setQuestionLength] = useState(null);
+  const [category, setCategory] = useState("");
 
   function handleScreens(navigate, score, questionLength) {
     setSwitchScreens(navigate);
@@ -16,7 +17,7 @@ function App() {
 
   //Gets category from StartScreen
   function getChosenCategory(category) {
-    console.log(category);
+    setCategory(category);
   }
 
   return (
@@ -24,7 +25,9 @@ function App() {
       {switchScreens === "startPage" && (
         <StartScreen onClick={handleScreens} category={getChosenCategory} />
       )}
-      {switchScreens === "startGame" && <GamePlay onClick={handleScreens} />}
+      {switchScreens === "startGame" && (
+        <GamePlay onClick={handleScreens} category={category} />
+      )}
       {switchScreens === "showScore" && (
         <ScoreScreen
           onClick={handleScreens}
