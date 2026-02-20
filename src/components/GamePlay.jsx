@@ -7,6 +7,7 @@ export const GamePlay = (props) => {
   const [index, setIndex] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [score, setScore] = useState(0);
 
   const results = [
     {
@@ -58,13 +59,18 @@ export const GamePlay = (props) => {
   //Button - detects, which of the answers are clicked
   function handleAnswer(chosenAnswer) {
     setSelectedAnswer(chosenAnswer);
+    setScore((prev) => {
+      return results[index].correct_answer === chosenAnswer ? prev + 1 : score;
+    });
   }
 
   return (
     <div className={style.gamePlay}>
       <header className={style.header}>
-        <span className="quiz-progress-label">Question 3 of 5</span>
-        <span className="score">Score: 0</span>
+        <span className="quiz-progress-label">
+          Question {index + 1} of {results.length}
+        </span>
+        <span className="score">Score: {score}</span>
       </header>
       <main>
         <h2 className={style.question}>{results[index].question}</h2>
