@@ -113,7 +113,7 @@ export const GamePlay = (props) => {
       {/* Navigates to the Score Page */}
       {index >= results.length - 1 && (
         <button
-          onClick={() => props.onClick("showScore")}
+          onClick={() => props.onClick("showScore", score, results.length)}
           className="btn"
           disabled={!selectedAnswer}
         >

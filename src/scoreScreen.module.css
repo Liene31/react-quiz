@@ -1,0 +1,40 @@
+.scoreScreen {
+  width: 320px;
+  text-align: center;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.scoreWrapper {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.score {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #6366f1;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #1f2937;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.text {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
