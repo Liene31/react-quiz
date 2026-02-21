@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { clsx } from "clsx";
+import { decode } from "html-entities";
 import style from "../gamePlay.module.css";
 
 export const GamePlay = (props) => {
@@ -67,7 +68,7 @@ export const GamePlay = (props) => {
         <span className="score">Score: {score}</span>
       </header>
       <main>
-        <h2 className={style.question}>{results[index]?.question}</h2>
+        <h2 className={style.question}>{decode(results[index]?.question)}</h2>
         {shuffledAnswers.map((answers, i) => {
           //User has selected a specific answer but it doesn't evaluate it's correctness
           const isSelected = answers === selectedAnswer;
@@ -87,7 +88,7 @@ export const GamePlay = (props) => {
               disabled={hasAnswered}
               onClick={() => handleAnswer(answers)}
             >
-              {answers}
+              {decode(answers)}
             </button>
           );
         })}
