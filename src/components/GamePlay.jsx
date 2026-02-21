@@ -14,7 +14,7 @@ export const GamePlay = (props) => {
   useEffect(() => {
     axios
       .get(
-        `https://opentdb.com/api.php?amount=5&category=${props.category}&type=multiple`,
+        `https://opentdb.com/api.php?amount=5&category=${props.category}&difficulty=easy&type=multiple`,
       )
       .then((res) => {
         setResults(res.data.results);
