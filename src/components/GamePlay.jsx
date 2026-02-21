@@ -11,11 +11,11 @@ export const GamePlay = (props) => {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [score, setScore] = useState(0);
 
-  console.log(props.category);
-
   useEffect(() => {
     axios
-      .get(`https://opentdb.com/api.php?amount=5&category=19&type=multiple`)
+      .get(
+        `https://opentdb.com/api.php?amount=5&category=${props.category}&type=multiple`,
+      )
       .then((res) => {
         setResults(res.data.results);
       })

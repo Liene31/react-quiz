@@ -6,9 +6,6 @@ export const StartScreen = (props) => {
   const [chooseCategory, setChooseCategory] = useState("");
   const [categoryList, setCategoryList] = useState([]);
 
-  //Replace by API data
-  // const categoryList = ["sport", "animals", "food", "geography"];
-
   //Fetch all categories from Trivia API
   useEffect(() => {
     axios
@@ -25,7 +22,7 @@ export const StartScreen = (props) => {
   //Loops through the list and fills the option with all the categories
   const categories = categoryList.map((category) => {
     return (
-      <option key={category.name} value={category.name}>
+      <option key={category.id} value={category.id}>
         {category.name}
       </option>
     );
@@ -38,9 +35,6 @@ export const StartScreen = (props) => {
     setChooseCategory(e.target.value);
     props.category(e.target.value);
   }
-
-  // console.log(chooseCategory);
-  // console.log(props.category(chooseCategory));
 
   // RETURN
   return (
